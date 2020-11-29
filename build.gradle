@@ -1,0 +1,44 @@
+plugins {
+    id 'com.github.johnrengelman.shadow' version '5.2.0'
+    id 'java'
+    id 'java-library'
+    id "io.freefair.lombok" version "4.1.6"
+    id 'ear'
+}
+
+group = 'com.mandeng'
+version = '1.0.0-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+    bundleLib
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation('org.keycloak:keycloak-core:11.0.2')
+    implementation('org.keycloak:keycloak-server-spi:11.0.2')
+    bundleLib group: 'org.apache.commons', name: 'commons-lang3', version: '3.9'
+    bundleLib group: 'mysql', name: 'mysql-connector-java', version: '8.0.18'
+    bundleLib group: 'org.slf4j', name: 'slf4j-log4j12', version: '2.0.0-alpha1'
+    bundleLib group: 'org.slf4j', name: 'slf4j-jdk14', version: '2.0.0-alpha1'
+    implementation('org.projectlombok:lombok:1.18.10')
+    bundleLib group: 'org.hibernate', name: 'hibernate-core', version: '5.4.10.Final'
+    configurations.compile.extendsFrom(configurations.bundleLib)
+}
+
+jar {
+    from {
+        configurations.bundleLib.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
