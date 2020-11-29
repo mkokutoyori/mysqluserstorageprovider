@@ -11,7 +11,7 @@ if you are on linux the command is
 The part of the command relating to impersonation 
 allows you to disable this property.
 
-- a mysql sgbd with a database named **somedatabase** running 
+- a mysql dbms with a database named **somedatabase** running 
 on port **3306** and having a user named **root** whose password is **admin**;
 
 ## setup
