@@ -31,7 +31,7 @@ public class MySQLUserStorageProviderFactory implements UserStorageProviderFacto
     public static final String PORT = "3306";
     public static final String DATABASE_NAME = "newuserstorage";
     public static final String USER_NAME = "root";
-    public static final String PASSWORD = "regnesurlecielgele00";
+    public static final String PASSWORD = "admin";
 
     @Override
     public MySQLUserStorageProvider create(KeycloakSession session, ComponentModel model) {
